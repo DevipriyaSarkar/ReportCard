@@ -1,0 +1,40 @@
+<resources>
+    <string name="app_name">Report Card</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="report_card_generator">Report Card Generator</string>
+    <string name="report_card">Report Card</string>
+    <string name="title_activity_subjects">Subjects</string>
+    <string name="save_button">SAVE</string>
+    <string name="enter_subject">Enter Subject</string>
+    <string name="enter_test">Enter Test</string>
+    <string name="title_activity_tests">Tests</string>
+    <string name="text_test">Test</string>
+    <string name="text_maxmarks">MaxMarks</string>
+    <string name="text_marks">Marks</string>
+    <string name="text_subject">Subject</string>
+    <string name="title_activity_marks">Marks</string>
+    <string name="ask_to_choose">Choose Test to Enter Marks</string>
+    <string name="ask_to_choose_subject">Choose a subject to see analysis</string>
+    <string name="ask_to_choose_test">Choose a test to see analysis</string>
+    <string name="prompt">Choose a Test</string>
+    <string name="select">[Select a Test…]</string>
+    <string name="tap_hint">Tap on Subject to Enter Marks </string>
+    <string name="title_activity_report_card">Report Card</string>
+    <string name="limit_edit_text">ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz 0123456789/-+^#.\'\"&amp;</string>
+    <string name="title_activity_load">Marks</string>
+    <string name="decimal_places">Number of Decimal Places</string>
+    <string name="decimal_places_summary">Number of decimal places up to which the percentage is to be calculated (Maximum: 5) [Default: 2]</string>
+    <string name="default_maxMarks">Default Maximum Marks</string>
+    <string name="default_maxMarks_summary">Maximum test marks to be set if max marks not entered [Default: 100]</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_user_settings">User Settings</string>
+    <string name="title_activity_analyse">Analyse</string>
+    <string name="title_activity_analysis__test">Test-Wise Analysis</string>
+    <string name="title_activity_analysis__subject">Subject-Wise Analysis</string>
+    <string name="analytics_text">Analytics</string>
+
+    <string name="str_btn_chart">Income vs Expense Bar Chart</string>
+
+</resources>

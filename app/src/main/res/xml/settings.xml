@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <EditTextPreference
+        android:title="@string/default_maxMarks"
+        android:summary="@string/default_maxMarks_summary"
+        android:inputType="number"
+        android:digits="0123456789"
+        android:maxLength="4"
+        android:key="prefMaxMarks" />
+
+    <EditTextPreference
+        android:title="@string/decimal_places"
+        android:summary="@string/decimal_places_summary"
+        android:inputType="number"
+        android:digits="012345"
+        android:maxLength="1"
+        android:key="prefDecimalPlaces" />
+
+    <EditTextPreference
+        android:title="Pass Percentage"
+        android:summary="Enter the percentage equal to or above which the student is considered to be passed [Default: 30]"
+        android:inputType="number"
+        android:digits="0123456789"
+        android:maxLength="3"
+        android:key="prefPassPercent" />
+
+    <PreferenceCategory android:title="GRADE RANGE SETTINGS">
+        <Preference
+            android:title="Set Grade Range"
+            android:summary="Lets you define the grade for an range of marks."
+            android:key="gradePref" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="ANALYTICS SETTINGS">
+        <CheckBoxPreference
+            android:title="Show Value on Top"
+            android:defaultValue="false"
+            android:summary="This option if selected will show the respective Y-values on top of the bars in the graph."
+            android:key="prefValOnTop" />
+    </PreferenceCategory>
+
+</PreferenceScreen>
