@@ -43,13 +43,6 @@ public class MainActivity extends AppCompatActivity {
         dpMainAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, dpOptions);
         dpMainListView.setAdapter(dpMainAdapter);
 
-        //get test size and subject size
-        spSubject = getSharedPreferences("SUBJECT_LIST", Context.MODE_PRIVATE);
-        spTest = getSharedPreferences("TEST_LIST", Context.MODE_PRIVATE);
-
-        subSize = spSubject.getInt("subject_size", 0);
-        testSize = spTest.getInt("test_size", 0);
-
         dpMainListView.setOnItemClickListener(
                 new AdapterView.OnItemClickListener() {
                     @Override
@@ -61,6 +54,13 @@ public class MainActivity extends AppCompatActivity {
                             Intent intent = new Intent(MainActivity.this, Tests.class);
                             startActivity(intent);
                         } else if (position == 2) {
+                            //get test size and subject size
+                            spSubject = getSharedPreferences("SUBJECT_LIST", Context.MODE_PRIVATE);
+                            spTest = getSharedPreferences("TEST_LIST", Context.MODE_PRIVATE);
+
+                            subSize = spSubject.getInt("subject_size", 0);
+                            testSize = spTest.getInt("test_size", 0);
+
                             //check if test list and subject list is empty
                             if (testSize == 0 || subSize == 0)
                                 Toast.makeText(MainActivity.this, "Add Test and/or Subject to Input Marks", Toast.LENGTH_LONG).show();
@@ -69,6 +69,13 @@ public class MainActivity extends AppCompatActivity {
                                 startActivity(intent);
                             }
                         } else if (position == 3) {
+                            //get test size and subject size
+                            spSubject = getSharedPreferences("SUBJECT_LIST", Context.MODE_PRIVATE);
+                            spTest = getSharedPreferences("TEST_LIST", Context.MODE_PRIVATE);
+
+                            subSize = spSubject.getInt("subject_size", 0);
+                            testSize = spTest.getInt("test_size", 0);
+
                             //check if test list and subject list is empty
                             if (subSize == 0 || testSize == 0)
                                 Toast.makeText(MainActivity.this, "Add Test and/or Subject to Generate Report Card", Toast.LENGTH_LONG).show();
@@ -77,6 +84,13 @@ public class MainActivity extends AppCompatActivity {
                                 startActivity(intent);
                             }
                         }  else if (position == 4) {
+                            //get test size and subject size
+                            spSubject = getSharedPreferences("SUBJECT_LIST", Context.MODE_PRIVATE);
+                            spTest = getSharedPreferences("TEST_LIST", Context.MODE_PRIVATE);
+
+                            subSize = spSubject.getInt("subject_size", 0);
+                            testSize = spTest.getInt("test_size", 0);
+
                             //check if test list and subject list is empty
                             if (subSize == 0 || testSize == 0)
                                 Toast.makeText(MainActivity.this, "Add Test and/or Subject to Analyse", Toast.LENGTH_LONG).show();

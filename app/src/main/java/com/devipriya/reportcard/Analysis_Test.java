@@ -46,7 +46,7 @@ public class Analysis_Test extends AppCompatActivity {
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         sharedPrefSettings = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-        userValOnTop = sharedPrefSettings.getBoolean("prefValOnTop",false);
+        userValOnTop = sharedPrefSettings.getBoolean("prefValOnTop", true);
 
         //get subject list size
         sharedPrefSubjects = getSharedPreferences("SUBJECT_LIST", Context.MODE_PRIVATE);
@@ -80,10 +80,12 @@ public class Analysis_Test extends AppCompatActivity {
         dpMarks = new ArrayList<>();
         dpSubjectName = new ArrayList<>();
 
+        //get subject name list into array list "dpSubjectName"
         dpSubjectName.clear();
         for(int i=0; i < subSize; i++)
             dpSubjectName.add((sharedPrefSubjects.getString("subject_"+i, "")));
 
+        //loading array list into string array
         dpSubArray = new String[dpSubjectName.size()];
         dpSubArray = dpSubjectName.toArray(dpSubArray);
 
@@ -91,6 +93,7 @@ public class Analysis_Test extends AppCompatActivity {
         testSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                //draw graph
                 pos = position;
 
                 testGraph.removeAllSeries();
@@ -125,9 +128,10 @@ public class Analysis_Test extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
+                //don't do anything
             }
         });
     }
 
 }
+

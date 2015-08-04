@@ -79,66 +79,74 @@ public class Tests extends AppCompatActivity {
         dpSaveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int flag = 0;
-                //get test name
-                if (dpTestNameInput.getText().toString().equals("")) {
-                    itemName.setTestName("No Title");
-                } else {
-                    itemName.setTestName(dpTestNameInput.getText().toString());
-                    String[] words = itemName.getTestName().split(" ");
-                    StringBuilder sb = new StringBuilder();
-                    if (words[0].length() > 0) {
-                        sb.append(Character.toUpperCase(words[0].charAt(0)) + words[0].subSequence(1, words[0].length()).toString());
-                        for (int i = 1; i < words.length; i++) {
-                            sb.append(" ");
-                            sb.append(Character.toUpperCase(words[i].charAt(0)) + words[i].subSequence(1, words[i].length()).toString());
+                //check if the inputs contain any alpha numeric characters
+                if(hasAlphaNum(dpTestNameInput.getText().toString())) {
+                    int flag = 0;
+                    //get test name
+                    itemName.setTestName(dpTestNameInput.getText().toString().trim());
+                    try {
+                        //make first letter of each word capital
+                        String[] words = itemName.getTestName().trim().split(" ");
+                        StringBuilder sb = new StringBuilder();
+                        if (words[0].length() > 0) {
+                            sb.append(Character.toUpperCase(words[0].charAt(0)) + words[0].subSequence(1, words[0].length()).toString());
+                            for (int i = 1; i < words.length; i++) {
+                                sb.append(" ");
+                                sb.append(Character.toUpperCase(words[i].charAt(0)) + words[i].subSequence(1, words[i].length()).toString());
+                            }
+                        }
+                        itemName.setTestName(sb.toString().trim());
+                    } catch (Exception e){
+                        itemName.setTestName(dpTestNameInput.getText().toString().trim());
+                    }
+
+                    //get test maximum marks
+                    if (dpMaxMarksInput.getText().toString().equals("")) {
+                        itemName.setTestMaxMarks(settingMaxMarks);
+                    } else {
+                        itemName.setTestMaxMarks(Integer.parseInt(dpMaxMarksInput.getText().toString()));
+                    }
+
+                    dpTestNameInput.setText("");
+                    dpMaxMarksInput.setText("");
+
+                    //check if test already exists
+                    for (int i = 0; i < dpItems.size(); i++) {
+                        if ((dpItems.get(i).getTestName()).equalsIgnoreCase(itemName.getTestName())) {
+                            flag = 1;
+                            break;
                         }
                     }
-                    itemName.setTestName(sb.toString());
-                }
 
-                //get test maximum marks
-                if (dpMaxMarksInput.getText().toString().equals("")) {
-                    itemName.setTestMaxMarks(settingMaxMarks);
-                } else {
-                    itemName.setTestMaxMarks(Integer.parseInt(dpMaxMarksInput.getText().toString()));
-                }
+                    if (flag == 0) {
+                        //add the item details into array list "dpItems" as a TestRow object
+                        dpItems.add(itemName);
+                        itemName = new TestRow();
+                        //set the adapter
+                        dpDynamicListViewAdapter = new CustomTestRowAdapter(Tests.this, dpItems);
+                        dpDynamicListView.setAdapter(dpDynamicListViewAdapter);
+                        //refresh the list
+                        dpDynamicListView.invalidateViews();
+                        dpDynamicListViewAdapter.notifyDataSetChanged();
+                        Toast.makeText(Tests.this, "Test Added", Toast.LENGTH_SHORT).show();
 
-                dpTestNameInput.setText("");
-                dpMaxMarksInput.setText("");
-
-                //check if test already exists
-                for (int i=0; i < dpItems.size(); i++ ){
-                    if((dpItems.get(i).getTestName()).equalsIgnoreCase(itemName.getTestName())) {
-                        flag = 1;
-                        break;
+                        //delete marks of that subject in all tests
+                        spSubject = getSharedPreferences("SUBJECT_LIST", Context.MODE_PRIVATE);
+                        spMarks = getSharedPreferences("MARKS_LIST", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = spMarks.edit();
+                        for (int i = 0; i < 50; i++) {
+                            editor.putInt("marks_" + (dpItems.size() - 1) + "_" + i, 0);
+                        }
+                        editor.commit();
+                    } else {
+                        itemName = new TestRow();
+                        Toast.makeText(Tests.this, "TEST ALREADY EXISTS!", Toast.LENGTH_SHORT).show();
                     }
                 }
-
-                if(flag == 0) {
-                    //add the item details into array list "dpItems" as a TestRow object
-                    dpItems.add(itemName);
-                    itemName = new TestRow();
-                    //set the adapter
-                    dpDynamicListViewAdapter = new CustomTestRowAdapter(Tests.this, dpItems);
-                    dpDynamicListView.setAdapter(dpDynamicListViewAdapter);
-                    //refresh the list
-                    dpDynamicListView.invalidateViews();
-                    dpDynamicListViewAdapter.notifyDataSetChanged();
-                    Toast.makeText(Tests.this, "Test Added", Toast.LENGTH_SHORT).show();
-
-                    //delete marks of that subject in all tests
-                    spSubject = getSharedPreferences("SUBJECT_LIST", Context.MODE_PRIVATE);
-                    spMarks = getSharedPreferences("MARKS_LIST", Context.MODE_PRIVATE);
-                    SharedPreferences.Editor editor = spMarks.edit();
-                    for (int i = 0; i < 50; i++) {
-                        editor.putInt("marks_" + (dpItems.size() - 1) + "_" + i, 0);
-                    }
-                    editor.commit();
-                }
-                else{
-                    itemName = new TestRow();
-                    Toast.makeText(Tests.this, "TEST ALREADY EXISTS!", Toast.LENGTH_SHORT).show();
+                else {
+                    Toast.makeText(Tests.this, "Please enter valid test name.", Toast.LENGTH_SHORT).show();
+                    dpTestNameInput.setText("");
+                    dpMaxMarksInput.setText("");
                 }
             }
         });
@@ -173,8 +181,8 @@ public class Tests extends AppCompatActivity {
                                 spSubject = getSharedPreferences("SUBJECT_LIST", Context.MODE_PRIVATE);
                                 spMarks = getSharedPreferences("MARKS_LIST", Context.MODE_PRIVATE);
                                 SharedPreferences.Editor editor = spMarks.edit();
-                                for(int i=0; i < spSubject.getInt("subject_size", 0); i++){
-                                    editor.putInt("marks_"+position+"_"+i,0);
+                                for (int i = 0; i < spSubject.getInt("subject_size", 0); i++) {
+                                    editor.putInt("marks_" + position + "_" + i, 0);
                                 }
                                 editor.commit();
                             }
@@ -215,6 +223,14 @@ public class Tests extends AppCompatActivity {
 
         super.onBackPressed();
 
+    }
+
+    boolean hasAlphaNum(String s){
+        for (int i=0; i < s.length(); i++){
+            if((s.charAt(i)>='A' && s.charAt(i)<='Z') || (s.charAt(i)>='a' && s.charAt(i)<='z') || (s.charAt(i)>='0' && s.charAt(i)<='9'))
+                return true;
+        }
+        return false;
     }
 
 }

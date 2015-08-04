@@ -1,30 +1,20 @@
 package com.devipriya.reportcard;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.app.Fragment;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.os.Message;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.ListView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.os.Handler;
 
 import java.util.ArrayList;
 
@@ -126,44 +116,48 @@ public class InputMarksFragment extends Fragment {
                 alertDialogBuilder.setPositiveButton("OK",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
-                                //check if enter marks exceeds maximum marks
-                                if ((Integer.parseInt(userInput.getText().toString())) > max)
-                                    flag = 1;
-                                // get user input in edit text and set it to result
-                                if (flag == 0) {
-                                    sample.setSubjectMarks(Integer.parseInt(userInput.getText().toString()));
-                                    sample.setSubjectName(spSubject.getString("subject_" + position, ""));
-                                    dpItems.remove(position);
-                                    dpItems.add(position, sample);
-                                    sample = new MarksRow();
-                                    //set custom list view adapter
-                                    dpItemsListViewAdapter = new CustomMarksRowAdapter(getActivity(), dpItems);
-                                    dpInputMarksListView.setAdapter(dpItemsListViewAdapter);
-                                    //refresh the list view
-                                    dpInputMarksListView.invalidateViews();
-                                    dpItemsListViewAdapter.notifyDataSetChanged();
-                                    //save marks
-                                    editor.putInt("marks_" + testPos + "_" + position, dpItems.get(position).getSubjectMarks());
-                                    editor.commit();
+                                //check if edit text is empty
+                                if (!(userInput.getText().toString()).equals("") && !(userInput.getText().toString()).isEmpty()){
+                                    //check if enter marks exceeds maximum marks
+                                    if ((Integer.parseInt(userInput.getText().toString())) > max)
+                                        flag = 1;
+                                    // get user input in edit text and set it to result
+                                    if (flag == 0) {
+                                        sample.setSubjectMarks(Integer.parseInt(userInput.getText().toString()));
+                                        sample.setSubjectName(spSubject.getString("subject_" + position, ""));
+                                        dpItems.remove(position);
+                                        dpItems.add(position, sample);
+                                        sample = new MarksRow();
+                                        //set custom list view adapter
+                                        dpItemsListViewAdapter = new CustomMarksRowAdapter(getActivity(), dpItems);
+                                        dpInputMarksListView.setAdapter(dpItemsListViewAdapter);
+                                        //refresh the list view
+                                        dpInputMarksListView.invalidateViews();
+                                        dpItemsListViewAdapter.notifyDataSetChanged();
+                                        //save marks
+                                        editor.putInt("marks_" + testPos + "_" + position, dpItems.get(position).getSubjectMarks());
+                                        editor.commit();
+                                    } else {
+                                        //set marks to maximum marks if entered marks exceeds maximum marks
+                                        sample.setSubjectMarks(max);
+                                        sample.setSubjectName(spSubject.getString("subject_" + position, ""));
+                                        dpItems.remove(position);
+                                        dpItems.add(position, sample);
+                                        sample = new MarksRow();
+                                        //set custom list view adapter
+                                        dpItemsListViewAdapter = new CustomMarksRowAdapter(getActivity(), dpItems);
+                                        dpInputMarksListView.setAdapter(dpItemsListViewAdapter);
+                                        //refresh the list view
+                                        dpInputMarksListView.invalidateViews();
+                                        dpItemsListViewAdapter.notifyDataSetChanged();
+                                        //save marks
+                                        editor.putInt("marks_" + testPos + "_" + position, dpItems.get(position).getSubjectMarks());
+                                        editor.commit();
+                                        Toast.makeText(getActivity(), "Exceeds max marks. Max marks set (ie." + max + ").", Toast.LENGTH_SHORT).show();
+                                    }
                                 }
-                                else{
-                                    //set marks to maximum marks if entered marks exceeds maximum marks
-                                    sample.setSubjectMarks(max);
-                                    sample.setSubjectName(spSubject.getString("subject_" + position, ""));
-                                    dpItems.remove(position);
-                                    dpItems.add(position, sample);
-                                    sample = new MarksRow();
-                                    //set custom list view adapter
-                                    dpItemsListViewAdapter = new CustomMarksRowAdapter(getActivity(), dpItems);
-                                    dpInputMarksListView.setAdapter(dpItemsListViewAdapter);
-                                    //refresh the list view
-                                    dpInputMarksListView.invalidateViews();
-                                    dpItemsListViewAdapter.notifyDataSetChanged();
-                                    //save marks
-                                    editor.putInt("marks_" + testPos + "_" + position, dpItems.get(position).getSubjectMarks());
-                                    editor.commit();
-                                    Toast.makeText(getActivity(), "Exceeds max marks. Max marks set (ie."+max+").", Toast.LENGTH_SHORT).show();
-                                }
+                                else
+                                    Toast.makeText(getActivity(), "Marks left empty. Please enter the marks.", Toast.LENGTH_SHORT).show();
                             }
                         });
                 alertDialogBuilder.setNegativeButton("Cancel",
@@ -175,6 +169,9 @@ public class InputMarksFragment extends Fragment {
 
                 // create alert dialog
                 AlertDialog alertDialog = alertDialogBuilder.create();
+
+                //show soft keyboard
+                alertDialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
 
                 // show it
                 alertDialog.show();

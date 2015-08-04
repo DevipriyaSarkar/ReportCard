@@ -26,18 +26,44 @@
         android:key="prefPassPercent" />
 
     <PreferenceCategory android:title="GRADE RANGE SETTINGS">
-        <Preference
-            android:title="Set Grade Range"
-            android:summary="Lets you define the grade for an range of marks."
+        <ListPreference
+            android:title="Show/Hide Grades"
+            android:summary="Lets you set grade options."
+            android:defaultValue="1"
+            android:entries="@array/listArray"
+            android:entryValues="@array/listValues"
             android:key="gradePref" />
+        <Preference
+            android:title="Edit Rank Range"
+            android:summary="Tap to see the range of each rank."
+            android:key="rangePref"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="RANK SETTINGS">
+        <CheckBoxPreference
+            android:title="Show Rank"
+            android:defaultValue="false"
+            android:summary="This option if selected will show rank in the report card."
+            android:key="prefRank" />
+        <Preference
+            android:title="See Rank Range"
+            android:summary="Tap to see the range of each rank."
+            android:key="seeRank"/>
     </PreferenceCategory>
 
     <PreferenceCategory android:title="ANALYTICS SETTINGS">
         <CheckBoxPreference
             android:title="Show Value on Top"
-            android:defaultValue="false"
+            android:defaultValue="true"
             android:summary="This option if selected will show the respective Y-values on top of the bars in the graph."
             android:key="prefValOnTop" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="CLEAR DATA">
+        <Preference
+            android:title="Clear All User Data"
+            android:summary="Tap to clear all the user data saved."
+            android:key="prefClear"/>
     </PreferenceCategory>
 
 </PreferenceScreen>

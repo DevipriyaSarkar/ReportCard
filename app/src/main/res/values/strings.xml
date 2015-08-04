@@ -34,7 +34,8 @@
     <string name="title_activity_analysis__test">Test-Wise Analysis</string>
     <string name="title_activity_analysis__subject">Subject-Wise Analysis</string>
     <string name="analytics_text">Analytics</string>
-
-    <string name="str_btn_chart">Income vs Expense Bar Chart</string>
+    <string name="addGradeRange">Add Grade Range</string>
+    <string name="title_activity_grade_pref">Grade Preference</string>
+    <string name="alpha_num">ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789</string>
 
 </resources>

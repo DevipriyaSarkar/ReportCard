@@ -46,7 +46,7 @@ public class Analysis_Subject extends AppCompatActivity {
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         sharedPrefSettings = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-        userValOnTop = sharedPrefSettings.getBoolean("prefValOnTop",false);
+        userValOnTop = sharedPrefSettings.getBoolean("prefValOnTop", true);
 
         //get subject list size
         sharedPrefSubjects = getSharedPreferences("SUBJECT_LIST", Context.MODE_PRIVATE);
@@ -65,7 +65,7 @@ public class Analysis_Subject extends AppCompatActivity {
         dpSubjects.clear();
         sharedPrefSubjects = getSharedPreferences("SUBJECT_LIST", Context.MODE_PRIVATE);
 
-        //get test list into array list "dpTests"
+        //get subject list into array list "dpSubjects"
         for (int i = 0; i < subSize; i++) {
             dpSubjects.add(i, sharedPrefSubjects.getString("subject_" + i, ""));
         }
@@ -80,10 +80,12 @@ public class Analysis_Subject extends AppCompatActivity {
         dpMarks = new ArrayList<>();
         dpTestName = new ArrayList<>();
 
+        //get test name list into array list "dpTestName"
         dpTestName.clear();
         for(int i=0; i < testSize; i++)
             dpTestName.add((sharedPrefTests.getString("testName_"+i, "")));
 
+        //loading the array list into string array
         dpTestArray = new String[dpTestName.size()];
         dpTestArray = dpTestName.toArray(dpTestArray);
 
@@ -91,6 +93,7 @@ public class Analysis_Subject extends AppCompatActivity {
         subSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                //draw the graph
                 pos = position;
 
                 subGraph.removeAllSeries();
@@ -125,8 +128,9 @@ public class Analysis_Subject extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
+                //don't do anything
             }
         });
     }
 }
+

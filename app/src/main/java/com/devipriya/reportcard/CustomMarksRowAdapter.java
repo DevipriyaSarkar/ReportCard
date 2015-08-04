@@ -12,7 +12,6 @@ import java.util.ArrayList;
 /**
  * Created by Devipriya on 10-Jul-15.
  */
-
 public class CustomMarksRowAdapter extends ArrayAdapter<MarksRow> {
 
     public CustomMarksRowAdapter(Context context, ArrayList<MarksRow> marksRow) {

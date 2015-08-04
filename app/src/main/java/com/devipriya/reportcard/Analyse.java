@@ -3,6 +3,7 @@ package com.devipriya.reportcard;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -26,12 +27,15 @@ public class Analyse extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_analyse);
+        this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
+        //initialising
         dpOptions = new ArrayList<>();
         dpOptions.add("Test-Wise Analysis");
         dpOptions.add("Subject-Wise Analysis");
 
         dpAnalysisListView = (ListView) findViewById(R.id.dpAnalysisListView);
+        //loading the list view adapter
         dpAnalysisAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, dpOptions);
         dpAnalysisListView.setAdapter(dpAnalysisAdapter);
 
@@ -42,6 +46,7 @@ public class Analyse extends AppCompatActivity {
         subSize = spSubject.getInt("subject_size", 0);
         testSize = spTest.getInt("test_size", 0);
 
+        //to open test-wise / subject-wise analysis
         dpAnalysisListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

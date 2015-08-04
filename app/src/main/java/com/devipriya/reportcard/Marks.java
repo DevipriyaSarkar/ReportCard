@@ -68,7 +68,7 @@ public class Marks extends AppCompatActivity {
 
                 FragmentManager fm;
 
-                //fragment manager
+                //fragment manager //load fragments
                 fm = getFragmentManager();
                 if (fm.findFragmentById(R.id.dpFragment) == null) {
                     InputMarksFragment fragment;

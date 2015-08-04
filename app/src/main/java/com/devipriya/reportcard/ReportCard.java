@@ -13,6 +13,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 
@@ -26,10 +27,12 @@ public class ReportCard extends AppCompatActivity {
     SharedPreferences spMarks;
     TextView dpTitleText;
     RelativeLayout dpRelativeLayout;
-    int subSize, testSize, flag = 0;
+    int subSize, testSize;
+    int checkShowGrade;
+    boolean checkShowRank;
     RelativeLayout.LayoutParams params;
     RelativeLayout.LayoutParams nParams;
-    TextView cell;
+    TextView cell, cell1, cell2;
 
     int maxSub, overallTotalObt, overallMaxMarks;
     int[] totTest, maxTest, totSub;
@@ -59,6 +62,13 @@ public class ReportCard extends AppCompatActivity {
         settingsPass = Integer.parseInt(tempPass);
         dpPass = new BigDecimal(settingsPass);
 
+        //get choice whether to show rank or not
+        checkShowRank = spSettings.getBoolean("prefRank", false);
+
+        //get choice of displaying grade
+        checkShowGrade = Integer.parseInt(spSettings.getString("gradePref", "1"));
+
+        //open shared preferences
         spSubject = getSharedPreferences("SUBJECT_LIST", Context.MODE_PRIVATE);
         spTest = getSharedPreferences("TEST_LIST", Context.MODE_PRIVATE);
 
@@ -125,8 +135,8 @@ public class ReportCard extends AppCompatActivity {
         overallPercent = new BigDecimal(tempOverallPercent);
         overallPercent = overallPercent.setScale(settingsDec, BigDecimal.ROUND_HALF_EVEN);
 
-        //deciding result and rank
-        calculate();
+        //deciding result
+        calculateResult();
 
         //display report card view
         LinearLayout[] row = new LinearLayout[subSize+4];
@@ -164,16 +174,46 @@ public class ReportCard extends AppCompatActivity {
             else if(i == 1){
                 //row for maximum marks
                 for(int k=0; k < testSize+1; k++){
-                    cell = new TextView(new ContextThemeWrapper(this, R.style.Cell_Style));
-                    if(k==0)
+                    if(k==0) {
+                        cell = new TextView(new ContextThemeWrapper(this, R.style.Cell_Style));
                         cell.setText("MAX MARKS");
-                    else
-                        cell.setText(String.valueOf(spTest.getInt("testMaxMarks_" + (k - 1), 0)));
+                        row[i].addView(cell);
+                    }
+                    else {
+                        if(checkShowGrade == 1) {
+                            //don't show grades
+                            cell = new TextView(new ContextThemeWrapper(this, R.style.Cell_Style));
+                            cell.setText(String.valueOf(spTest.getInt("testMaxMarks_" + (k - 1), 0)));
+                            row[i].addView(cell);
+                        }
+                        else{
+                            //show both marks and grades
+                            cell1 = new TextView(new ContextThemeWrapper(this, R.style.Half_Cell_Style));
+                            cell1.setText(String.valueOf(spTest.getInt("testMaxMarks_" + (k - 1), 0)));
+                            row[i].addView(cell1);
+
+                            cell2 = new TextView(new ContextThemeWrapper(this, R.style.Half_Cell_Style));
+                            cell2.setText("Grade");
+                            row[i].addView(cell2);
+                        }
+                    }
+                }
+                if(checkShowGrade == 1){
+                    //don't show grades
+                    cell = new TextView(new ContextThemeWrapper(this, R.style.Cell_Style));
+                    cell.setText(String.valueOf(maxSub));
                     row[i].addView(cell);
                 }
-                cell = new TextView(new ContextThemeWrapper(this, R.style.Cell_Style));
-                cell.setText(String.valueOf(maxSub));
-                row[i].addView(cell);
+                else{
+                    //show both marks and grades
+                    cell1 = new TextView(new ContextThemeWrapper(this, R.style.Half_Cell_Style));
+                    cell1.setText(String.valueOf(maxSub));
+                    row[i].addView(cell1);
+
+                    cell2 = new TextView(new ContextThemeWrapper(this, R.style.Half_Cell_Style));
+                    cell2.setText("Grade");
+                    row[i].addView(cell2);
+                }
                 cell = new TextView(new ContextThemeWrapper(this, R.style.Cell_Style));
                 cell.setText("");
                 row[i].addView(cell);
@@ -182,16 +222,52 @@ public class ReportCard extends AppCompatActivity {
             else if(i == subSize+2){
                 //row for test total
                 for(int k=0; k < testSize+1; k++){
-                    cell = new TextView(new ContextThemeWrapper(this, R.style.Cell_Style));
-                    if(k==0)
+                    if(k==0){
+                        cell = new TextView(new ContextThemeWrapper(this, R.style.Cell_Style));
                         cell.setText("TEST TOTAL");
-                    else
-                        cell.setText(String.valueOf(totTest[k-1]));
+                        row[i].addView(cell);
+                    }
+                    else{
+                        if(checkShowGrade == 1){
+                            //don't show grades
+                            cell = new TextView(new ContextThemeWrapper(this, R.style.Cell_Style));
+                            cell.setText(String.valueOf(totTest[k-1]));
+                            row[i].addView(cell);
+                        }
+                        else{
+                            //show both marks and grades
+                            cell1 = new TextView(new ContextThemeWrapper(this, R.style.Half_Cell_Style));
+                            cell1.setText(String.valueOf(totTest[k - 1]));
+                            row[i].addView(cell1);
+
+                            int passFuncMarks = totTest[k - 1];
+                            int passFuncTotal = maxTest[k - 1];
+                            String resultGradeChar = calculateGrade(passFuncMarks, passFuncTotal, checkShowGrade);
+                            cell2 = new TextView(new ContextThemeWrapper(this, R.style.Half_Cell_Style));
+                            cell2.setText(resultGradeChar);
+                            row[i].addView(cell2);
+                        }
+                    }
+                }
+                if(checkShowGrade == 1){
+                    //don't show grades
+                    cell = new TextView(new ContextThemeWrapper(this, R.style.Double_Cell_Style));
+                    cell.setText(String.valueOf(overallTotalObt));
                     row[i].addView(cell);
                 }
-                cell = new TextView(new ContextThemeWrapper(this, R.style.Double_Cell_Style));
-                cell.setText(String.valueOf(overallTotalObt));
-                row[i].addView(cell);
+                else{
+                    //show both marks and grades
+                    cell1 = new TextView(new ContextThemeWrapper(this, R.style.Double_Cell_Style_Mini));
+                    cell1.setText(String.valueOf(overallTotalObt));
+                    row[i].addView(cell1);
+
+                    int passFuncMarks = overallTotalObt;
+                    int passFuncTotal = overallMaxMarks;
+                    String resultGradeChar = calculateGrade(passFuncMarks, passFuncTotal, checkShowGrade);
+                    cell2 = new TextView(new ContextThemeWrapper(this, R.style.Double_Cell_Style_Mini));
+                    cell2.setText(resultGradeChar);
+                    row[i].addView(cell2);
+                }
                 dpRelativeLayout.addView(row[i]);
             }
             else if(i == subSize+3){
@@ -212,16 +288,56 @@ public class ReportCard extends AppCompatActivity {
             else{
                 //rows for marks in table format
                 for(int k=0; k < testSize+1; k++){
+                    if(k==0) {
+                        cell = new TextView(new ContextThemeWrapper(this, R.style.Cell_Style));
+                        cell.setText(spSubject.getString("subject_" + (i - 2), ""));
+                        row[i].addView(cell);
+                    }
+                    else {
+
+                        if(checkShowGrade == 1){
+                            //show only marks //don't show grades
+                            cell = new TextView(new ContextThemeWrapper(this, R.style.Cell_Style));
+                            cell.setText(String.valueOf(spMarks.getInt("marks_" + (k - 1) + "_" + (i - 2), 0)));
+                            row[i].addView(cell);
+                        }
+                        else {
+                            //show both marks and grades
+
+                            //show marks
+                            cell1 = new TextView(new ContextThemeWrapper(this, R.style.Half_Cell_Style));
+                            cell1.setText(String.valueOf(spMarks.getInt("marks_" + (k - 1) + "_" + (i - 2), 0)));
+                            row[i].addView(cell1);
+
+                            //show grades
+                            int passFuncMarks = spMarks.getInt("marks_" + (k - 1) + "_" + (i - 2), 0);
+                            int passFuncTotal = spTest.getInt("testMaxMarks_" + (k - 1), 0);
+                            String resultGradeChar = calculateGrade(passFuncMarks, passFuncTotal, checkShowGrade);
+                            cell2 = new TextView(new ContextThemeWrapper(this, R.style.Half_Cell_Style));
+                            cell2.setText(resultGradeChar);
+                            row[i].addView(cell2);
+                        }
+                    }
+                }
+                if(checkShowGrade == 1){
+                    //don't show grades
                     cell = new TextView(new ContextThemeWrapper(this, R.style.Cell_Style));
-                    if(k==0)
-                        cell.setText(spSubject.getString("subject_"+(i-2), ""));
-                    else
-                        cell.setText(String.valueOf(spMarks.getInt("marks_" + (k - 1) + "_" + (i - 2) , 0)));
+                    cell.setText(String.valueOf(totSub[i-2]));
                     row[i].addView(cell);
                 }
-                cell = new TextView(new ContextThemeWrapper(this, R.style.Cell_Style));
-                cell.setText(String.valueOf(totSub[i-2]));
-                row[i].addView(cell);
+                else{
+                    //show both marks and grades
+                    cell1 = new TextView(new ContextThemeWrapper(this, R.style.Half_Cell_Style));
+                    cell1.setText(String.valueOf(totSub[i - 2]));
+                    row[i].addView(cell1);
+
+                    int passFuncMarks = totSub[i - 2];
+                    int passFuncTotal = maxSub;
+                    String resultGradeChar = calculateGrade(passFuncMarks, passFuncTotal, checkShowGrade);
+                    cell2 = new TextView(new ContextThemeWrapper(this, R.style.Half_Cell_Style));
+                    cell2.setText(resultGradeChar);
+                    row[i].addView(cell2);
+                }
                 cell = new TextView(new ContextThemeWrapper(this, R.style.Cell_Style));
                 cell.setText((String.valueOf(percentSub[i-2]))+"%");
                 row[i].addView(cell);
@@ -230,7 +346,13 @@ public class ReportCard extends AppCompatActivity {
         }
 
         //display last four text views
-        for(int m=0; m < 4; m++){
+        int mSize;
+        if(checkShowRank)
+            mSize = 4;
+        else
+            mSize = 3;
+
+        for(int m=0; m < mSize; m++){
             //total marks
             nParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
             nParams.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
@@ -267,6 +389,7 @@ public class ReportCard extends AppCompatActivity {
                 //rank secured
                 cell = new TextView(new ContextThemeWrapper(this, R.style.Last_Note_Style));
                 cell.setGravity(Gravity.CENTER);
+                calculateRank();
                 cell.setText("RANK: " + dpRank);
                 nParams.addRule(RelativeLayout.BELOW, subSize + 4 + 3);
                 cell.setId(subSize + 4 + 1 + 3);
@@ -276,17 +399,86 @@ public class ReportCard extends AppCompatActivity {
         }
     }
 
-    //deciding result and rank
-    void calculate(){
-        //result: pass or fail
+    //calculate result
+    void calculateResult(){
+        //Result: pass or fail
         if(overallPercent.compareTo(dpPass) >= 0){
             dpResult = "PASS";
         }
         else
             dpResult = "FAIL";
-
-        if(flag == 1) {
-            //ranks: FCD or FC or...
-        }
     }
+
+    //calculate rank
+    void calculateRank(){
+        //Rank: FCD / FC / SC/ FAIL
+        if(overallPercent.compareTo(BigDecimal.valueOf(70)) >= 0)
+            dpRank = "WOAH, FIRST CLASS WITH DISTINCTION";
+        else if(overallPercent.compareTo(BigDecimal.valueOf(60)) >= 0)
+            dpRank = "YAYY, FIRST CLASS";
+        else if(overallPercent.compareTo(dpPass) >= 0)
+            dpRank = "NVM, SECOND CLASS";
+        else
+            dpRank = "OOPS, FAIL";
+    }
+
+    //calculate grade
+    String calculateGrade(int marks, int total, int option){
+
+        String resChar = "";
+        BigDecimal inputPercent;
+
+        //get default decimal places set by user in settings. Set 2 if nothing is set
+        spSettings = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        String tempDec = spSettings.getString("prefDecimalPlaces", "2");
+        if(tempDec.equals(""))
+            tempDec = "2";
+        settingsDec = Integer.parseInt(tempDec);
+
+        //calculate the percentage of the marks passed
+        inputPercent = new BigDecimal((((float) marks / (float) total) * 100));
+        inputPercent = inputPercent.setScale(settingsDec, BigDecimal.ROUND_HALF_EVEN);
+
+        //show only pass or fail
+        if(option == 2){
+
+            if(inputPercent.compareTo(dpPass) >= 0)
+                resChar = "P";
+            else
+                resChar = "F";
+
+        } else if(option == 3) {
+            //show grades according to the user grade preferences
+            ArrayList<BigDecimal> range;
+            ArrayList<String> gradeChar;
+            SharedPreferences spGradePref;
+            int flag = 0;
+
+            spGradePref = getSharedPreferences("GRADE_PREF", Context.MODE_PRIVATE);
+            int rangeSize = spGradePref.getInt("grade_range_size", 0);
+
+            range = new ArrayList<>();
+            range.clear();
+            for (int i = 0; i < rangeSize; i++)
+                range.add(BigDecimal.valueOf(spGradePref.getInt("gScore_" + i, 0)));
+
+            gradeChar = new ArrayList<>();
+            gradeChar.clear();
+            for (int i = 0; i < rangeSize; i++)
+                gradeChar.add(spGradePref.getString("gChar_" + i, ""));
+
+            for (int i = 0; i < rangeSize; i++) {
+                if (inputPercent.compareTo(range.get(i)) >= 0) {
+                    resChar = gradeChar.get(i);
+                    flag = 1;
+                    break;
+                }
+            }
+            if (flag == 0)
+                resChar = "F";
+        }
+
+        return resChar;
+    }
+
 }

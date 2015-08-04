@@ -6,7 +6,18 @@
     </style>
 
     <style name="Cell_Style">
-        <item name="android:width">110dp</item>
+        <item name="android:width">150dp</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:paddingLeft">5dp</item>
+        <item name="android:paddingRight">5dp</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">#000000</item>
+    </style>
+
+    <style name="Half_Cell_Style">
+        <item name="android:width">75dp</item>
         <item name="android:gravity">center_horizontal</item>
         <item name="android:paddingBottom">10dp</item>
         <item name="android:paddingLeft">5dp</item>
@@ -17,7 +28,20 @@
     </style>
 
     <style name="Double_Cell_Style">
-        <item name="android:width">220dp</item>
+        <item name="android:width">300dp</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:paddingLeft">5dp</item>
+        <item name="android:paddingRight">5dp</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:background">#FFE6E6</item>
+        <item name="android:textColor">#FF0000</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Double_Cell_Style_Mini">
+        <item name="android:width">150dp</item>
         <item name="android:gravity">center_horizontal</item>
         <item name="android:paddingBottom">10dp</item>
         <item name="android:paddingLeft">5dp</item>

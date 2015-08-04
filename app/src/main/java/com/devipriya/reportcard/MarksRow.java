@@ -13,9 +13,9 @@ public class MarksRow {
         this.subjectMarks = 0;
     }
 
-    public MarksRow(String testName, int testMaxMarks) {
-        this.subjectName = testName;
-        this.subjectMarks = testMaxMarks;
+    public MarksRow(String subjectName, int subjectMarks) {
+        this.subjectName = subjectName;
+        this.subjectMarks = subjectMarks;
     }
 
     public String getSubjectName() {

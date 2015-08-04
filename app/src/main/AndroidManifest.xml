@@ -48,6 +48,10 @@
             android:name=".Analysis_Subject"
             android:label="@string/title_activity_analysis__subject" >
         </activity>
+        <activity
+            android:name=".GradePref"
+            android:label="@string/title_activity_grade_pref" >
+        </activity>
     </application>
 
 </manifest>
