@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.ContextThemeWrapper;
 import android.view.Gravity;
@@ -352,6 +353,11 @@ public class ReportCard extends AppCompatActivity {
         else
             mSize = 3;
 
+        //check pass or fail, accordingly change color
+        int checkPorF = 0;
+        if(dpResult.equalsIgnoreCase("PASS"))
+            checkPorF = 1;
+
         for(int m=0; m < mSize; m++){
             //total marks
             nParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
@@ -361,8 +367,10 @@ public class ReportCard extends AppCompatActivity {
                 cell.setGravity(Gravity.CENTER);
                 cell.setText("TOTAL MARKS OBTAINED: " + (String.valueOf(overallTotalObt)) + " OUT OF " + (String.valueOf(overallMaxMarks)) + " .");
                 nParams.addRule(RelativeLayout.BELOW, subSize + 4);
+                nParams.setMargins(0, 20, 0, 0);
                 cell.setId(subSize + 4 + 1);
                 cell.setLayoutParams(nParams);
+                changeCellColor(checkPorF, cell);
                 dpRelativeLayout.addView(cell);
             }
             else if(m == 1){
@@ -371,8 +379,10 @@ public class ReportCard extends AppCompatActivity {
                 cell.setGravity(Gravity.CENTER);
                 cell.setText("TOTAL PERCENTAGE: " + (String.valueOf(overallPercent)) + " % .");
                 nParams.addRule(RelativeLayout.BELOW, subSize + 4 + 1);
+                nParams.setMargins(0, 20, 0, 0);
                 cell.setId(subSize + 4 + 1 + 1);
                 cell.setLayoutParams(nParams);
+                changeCellColor(checkPorF, cell);
                 dpRelativeLayout.addView(cell);
             }
             else if(m == 2){
@@ -381,8 +391,10 @@ public class ReportCard extends AppCompatActivity {
                 cell.setGravity(Gravity.CENTER);
                 cell.setText("RESULT: " + dpResult);
                 nParams.addRule(RelativeLayout.BELOW, subSize + 4 + 2);
+                nParams.setMargins(0, 20, 0, 0);
                 cell.setId(subSize + 4 + 1 + 2);
                 cell.setLayoutParams(nParams);
+                changeCellColor(checkPorF, cell);
                 dpRelativeLayout.addView(cell);
             }
             else if(m == 3){
@@ -392,8 +404,10 @@ public class ReportCard extends AppCompatActivity {
                 calculateRank();
                 cell.setText("RANK: " + dpRank);
                 nParams.addRule(RelativeLayout.BELOW, subSize + 4 + 3);
+                nParams.setMargins(0, 20, 0, 0);
                 cell.setId(subSize + 4 + 1 + 3);
                 cell.setLayoutParams(nParams);
+                changeCellColor(checkPorF, cell);
                 dpRelativeLayout.addView(cell);
             }
         }
@@ -479,6 +493,17 @@ public class ReportCard extends AppCompatActivity {
         }
 
         return resChar;
+    }
+
+    void changeCellColor(int check, TextView textView){
+        if(check == 1){
+            textView.setBackground(ContextCompat.getDrawable(this, R.drawable.last_note_pass));
+            textView.setTextColor(getResources().getColor(R.color.green));
+        }
+        else {
+            textView.setBackground(ContextCompat.getDrawable(this, R.drawable.last_note_fail));
+            textView.setTextColor(getResources().getColor(R.color.red));
+        }
     }
 
 }

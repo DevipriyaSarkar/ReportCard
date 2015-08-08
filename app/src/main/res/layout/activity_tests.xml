@@ -51,7 +51,10 @@
         android:layout_below="@+id/dpSaveButton"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="20dp" />
+        android:layout_marginTop="20dp"
+        android:divider="#000000"
+        android:dividerHeight="2dip"
+        android:background="@drawable/border"/>
 
 
 </RelativeLayout>

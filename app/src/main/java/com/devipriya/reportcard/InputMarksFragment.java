@@ -74,7 +74,7 @@ public class InputMarksFragment extends Fragment {
         //set maximum test marks of the test selected
         spTest = getActivity().getSharedPreferences("TEST_LIST", 0);
         max = spTest.getInt("testMaxMarks_" + testPos, 0);
-        dpMaxMarksText.setText("MAXIMUM MARKS= " + max);
+        dpMaxMarksText.setText("Maximum Marks = " + max + ".");
         //get subject list and marks already saved
         spSubject = getActivity().getSharedPreferences("SUBJECT_LIST", 0);
         spMarks = getActivity().getSharedPreferences("MARKS_LIST", 0);
@@ -111,7 +111,7 @@ public class InputMarksFragment extends Fragment {
                 final EditText userInput = (EditText) promptsView.findViewById(R.id.editTextDialogUserInput);
 
                 // set dialog message
-                alertDialogBuilder.setCancelable(false);
+                alertDialogBuilder.setCancelable(true);
                 alertDialogBuilder.setTitle("Enter Marks");
                 alertDialogBuilder.setPositiveButton("OK",
                         new DialogInterface.OnClickListener() {
@@ -179,4 +179,3 @@ public class InputMarksFragment extends Fragment {
         });
     }
 }
-

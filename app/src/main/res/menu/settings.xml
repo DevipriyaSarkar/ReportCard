@@ -4,8 +4,8 @@
 
     <item android:id="@+id/menu_settings"
         android:title="@string/menu_settings"
-        app:showAsAction="ifRoom"
+        app:showAsAction="always"
         android:orderInCategory="100"
-        android:icon="@android:drawable/ic_menu_preferences"/>
+        android:icon="@drawable/ic_settings_white_18dp"/>
 
 </menu>

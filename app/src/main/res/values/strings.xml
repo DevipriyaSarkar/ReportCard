@@ -4,7 +4,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="report_card_generator">Report Card Generator</string>
-    <string name="report_card">Report Card</string>
+    <string name="report_card"><u>Report Card</u></string>
     <string name="title_activity_subjects">Subjects</string>
     <string name="save_button">SAVE</string>
     <string name="enter_subject">Enter Subject</string>

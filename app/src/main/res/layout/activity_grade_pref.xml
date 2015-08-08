@@ -32,7 +32,10 @@
         <ListView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/gradeList">
+            android:id="@+id/gradeList"
+            android:divider="#000000"
+            android:dividerHeight="2dip"
+            android:background="@drawable/border" >
         </ListView>
 
     </FrameLayout>

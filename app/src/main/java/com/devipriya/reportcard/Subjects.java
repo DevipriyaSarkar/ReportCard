@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -24,7 +23,7 @@ public class Subjects extends AppCompatActivity {
     Button dpSaveButton;
     ListView dpDynamicListView;
     ArrayList<String> dpItems;
-    ArrayAdapter dpDynamicListViewAdapter;
+    CustomSubjectRowAdapter dpDynamicListViewAdapter;
     String itemName= "";
     SharedPreferences spSubject;
     SharedPreferences spTest;
@@ -53,7 +52,7 @@ public class Subjects extends AppCompatActivity {
             dpItems.add(i, spSubject.getString("subject_" + i, ""));
 
 
-        dpDynamicListViewAdapter = new ArrayAdapter<String>(Subjects.this, android.R.layout.simple_list_item_1, dpItems);
+        dpDynamicListViewAdapter = new CustomSubjectRowAdapter(Subjects.this, dpItems);
         dpDynamicListView.setAdapter(dpDynamicListViewAdapter);
 
         //add items
@@ -96,7 +95,7 @@ public class Subjects extends AppCompatActivity {
                     if (flag == 0) {
                         dpItems.add(itemName);
                         //set the adapter
-                        dpDynamicListViewAdapter = new ArrayAdapter<String>(Subjects.this, android.R.layout.simple_list_item_1, dpItems);
+                        dpDynamicListViewAdapter = new CustomSubjectRowAdapter(Subjects.this, dpItems);
                         dpDynamicListView.setAdapter(dpDynamicListViewAdapter);
                         //refresh the list
                         dpDynamicListView.invalidateViews();
@@ -136,7 +135,7 @@ public class Subjects extends AppCompatActivity {
                                 //remove the subject
                                 dpItems.remove(position);
                                 //set the adapter
-                                dpDynamicListViewAdapter = new ArrayAdapter<String>(Subjects.this, android.R.layout.simple_list_item_1, dpItems);
+                                dpDynamicListViewAdapter = new CustomSubjectRowAdapter(Subjects.this, dpItems);
                                 dpDynamicListView.setAdapter(dpDynamicListViewAdapter);
                                 //refresh the list
                                 dpDynamicListViewAdapter.notifyDataSetChanged();

@@ -29,7 +29,8 @@
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
                 android:textStyle="bold"
-                android:textSize="30sp" />
+                android:textSize="30sp"
+                android:background="#FFFFCC" />
         </RelativeLayout>
 
     </HorizontalScrollView>

@@ -30,6 +30,9 @@
         android:layout_marginTop="20dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginBottom="5dp" />
+        android:layout_marginBottom="5dp"
+        android:divider="#000000"
+        android:dividerHeight="2dip"
+        android:background="@drawable/border"/>
 
 </RelativeLayout>
