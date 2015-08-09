@@ -497,11 +497,11 @@ public class ReportCard extends AppCompatActivity {
 
     void changeCellColor(int check, TextView textView){
         if(check == 1){
-            textView.setBackground(ContextCompat.getDrawable(this, R.drawable.last_note_pass));
+            textView.setBackgroundResource(R.drawable.last_note_pass);
             textView.setTextColor(getResources().getColor(R.color.green));
         }
         else {
-            textView.setBackground(ContextCompat.getDrawable(this, R.drawable.last_note_fail));
+            textView.setBackgroundResource(R.drawable.last_note_fail);
             textView.setTextColor(getResources().getColor(R.color.red));
         }
     }
