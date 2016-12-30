@@ -4,7 +4,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.devipriya.reportcard.Marks">
+    tools:context="com.devipriya.reportcard.activities.MarksEntryActivity">
 
     <LinearLayout
         android:orientation="vertical"
@@ -17,7 +17,6 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/ask_to_choose"
-            android:id="@+id/dpText"
             android:textIsSelectable="false"
             android:textColor="#ff000000" />
 
@@ -32,7 +31,7 @@
     <fragment
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:name="com.devipriya.reportcard.InputMarksFragment"
+        android:name="com.devipriya.reportcard.fragments.InputMarksFragment"
         android:id="@+id/dpFragment"
         tools:layout="@layout/input_marks_fragment"
         android:layout_below="@+id/dpLinearLayout"

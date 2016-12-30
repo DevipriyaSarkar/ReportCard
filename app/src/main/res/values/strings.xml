@@ -1,9 +1,6 @@
 <resources>
     <string name="app_name">Report Card</string>
 
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
-    <string name="report_card_generator">Report Card Generator</string>
     <string name="report_card"><u>Report Card</u></string>
     <string name="title_activity_subjects">Subjects</string>
     <string name="save_button">SAVE</string>
@@ -11,19 +8,16 @@
     <string name="enter_test">Enter Test</string>
     <string name="title_activity_tests">Tests</string>
     <string name="text_test">Test</string>
-    <string name="text_maxmarks">MaxMarks</string>
+    <string name="text_max_marks">MaxMarks</string>
     <string name="text_marks">Marks</string>
     <string name="text_subject">Subject</string>
     <string name="title_activity_marks">Marks</string>
     <string name="ask_to_choose">Choose Test to Enter Marks</string>
     <string name="ask_to_choose_subject">Choose a subject to see analysis</string>
     <string name="ask_to_choose_test">Choose a test to see analysis</string>
-    <string name="prompt">Choose a Test</string>
-    <string name="select">[Select a Test…]</string>
     <string name="tap_hint">Tap on Subject to Enter Marks </string>
     <string name="title_activity_report_card">Report Card</string>
     <string name="limit_edit_text">ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz 0123456789/-+^#.\'\"&amp;</string>
-    <string name="title_activity_load">Marks</string>
     <string name="decimal_places">Number of Decimal Places</string>
     <string name="decimal_places_summary">Number of decimal places up to which the percentage is to be calculated (Maximum: 5) [Default: 2]</string>
     <string name="default_maxMarks">Default Maximum Marks</string>
@@ -36,6 +30,81 @@
     <string name="analytics_text">Analytics</string>
     <string name="addGradeRange">Add Grade Range</string>
     <string name="title_activity_grade_pref">Grade Preference</string>
-    <string name="alpha_num">ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789</string>
+    <string name="test_analysis_text">Test-Wise Analysis</string>
+    <string name="subject_analysis_text">Subject-Wise Analysis</string>
+    <string name="too_few_subject_error">Please add more than one subject to analyze subjects.</string>
+    <string name="too_few_test_error">Please add more than one test to analyze tests.</string>
+    <string name="grade_range_dialog_title">New Grade Range</string>
+    <string name="grade_range_dialog_positive_btn_text">SAVE</string>
+    <string name="range_exists_error">Range already exists. Try with valid value.</string>
+    <string name="field_empty_error">Either one or both fields empty. Please enter valid value.</string>
+    <string name="grade_exists_error" formatted="false">Grade already exists. Try with less % value.</string>
+    <string name="percentage_invalid_error" formatted="false">Entered % less than pass %. Try with valid % value.</string>
+    <string name="invalid_data_error">Please enter proper data.</string>
+    <string name="grade_range_dialog_negative_btn_text">Cancel</string>
+    <string name="remove_grade_dialog_title">DELETE</string>
+    <string name="remove_grade_dialog_message">Do you want to delete?</string>
+    <string name="remove_grade_dialog_positive_btn_text">Yes</string>
+    <string name="remove_grade_dialog_negative_btn_text">No</string>
+    <string name="range_removal_error">This range cannot be removed!</string>
+    <string name="range_removal_success">Range removed!</string>
+    <string name="max_marks_text" formatted="false">Maximum Marks = %d.</string>
+    <string name="marks_entry_dialog_title">Enter Marks</string>
+    <string name="marks_entry_dialog_positive_btn_txt">OK</string>
+    <string name="marks_entry_dialog_negative_btn_text">Cancel</string>
+    <string name="marks_field_empty_error">Marks left empty. Please enter the marks.</string>
+    <string name="marks_exceed_range_error" formatted="false">Exceeds max marks. Max marks set (ie.%d).</string>
+    <string name="percentage_text" formatted="false">%s%%</string>
+    <string name="subject_option_text">Add or Delete Subjects</string>
+    <string name="text_option_text">Add or Delete Tests</string>
+    <string name="marks_entry_option_text">Enter Marks</string>
+    <string name="view_report_card_option_text">Report Card</string>
+    <string name="analysis_option_text">Analysis</string>
+    <string name="no_subject_test_for_marks_entry_error">Add Test and/or Subject to Input Marks</string>
+    <string name="no_subject_test_for_report_generation_error">Add Test and/or Subject to Generate Report Card</string>
+    <string name="no_subject_test_for_analysis_error">Add Test and/or Subject to Analyse</string>
+    <string name="invalid_pass_percentage_error" formatted="false">Exceeds 100%. Set to default pass %.</string>
+    <string name="rank_range_dialog_title">RANK RANGE</string>
+    <string name="rank_range_dialog_positive_btn_text">OK</string>
+    <string name="reset_dialog_message">Even the marks will be deleted. Are you sure you want to clear all user data?</string>
+    <string name="reset_dialog_title">CLEAR ALL</string>
+    <string name="reset_dialog_positive_btn_text">Yes</string>
+    <string name="reset_success_message">All User Data Cleared.</string>
+    <string name="reset_dialog_negative_btn_text">No</string>
+    <string name="enter_max_marks_text_hint" formatted="false">Enter Max. Marks (Default: %s)</string>
+    <string name="add_test_success_message">Test Added</string>
+    <string name="test_exists_error">TEST ALREADY EXISTS!</string>
+    <string name="invalid_test_name_error">Please enter valid test name.</string>
+    <string name="delete_test_dialog_message">Do you want to delete?</string>
+    <string name="delete_test_dialog_title">DELETE</string>
+    <string name="delete_test_dialog_positive_btn_text">Yes</string>
+    <string name="delete_test_dialog_negative_btn_text">No</string>
+    <string name="delete_test_success_message">Test Removed</string>
+    <string name="add_subject_success_message">Subject Added</string>
+    <string name="subject_exists_error">SUBJECT ALREADY EXISTS!</string>
+    <string name="invalid_subject_name_error">Please enter valid subject name.</string>
+    <string name="delete_subject_dialog_message">Do you want to delete?</string>
+    <string name="delete_subject_dialog_title">DELETE</string>
+    <string name="delete_subject_dialog_positive_btn_text">Yes</string>
+    <string name="delete_subject_dialog_negative_btn_text">No</string>
+    <string name="delete_subject_success_message">Subject Removed</string>
+    <string name="report_heading_subject_total">SUBJECT TOTAL</string>
+    <string name="report_heading_subject_percentage" formatted="false">SUBJECT %</string>
+    <string name="report_heading_max_marks">MAX MARKS</string>
+    <string name="report_heading_grade">Grade</string>
+    <string name="report_heading_test_total">TEST TOTAL</string>
+    <string name="report_heading_test_percentage" formatted="false">TEST %</string>
+    <string name="report_result_total_marks" formatted="false">TOTAL MARKS OBTAINED: %s OUT OF %s .</string>
+    <string name="report_result_total_percentage" formatted="false">TOTAL PERCENTAGE: %s %% .</string>
+    <string name="report_result" formatted="false">RESULT: %s</string>
+    <string name="report_result_rank" formatted="false">RANK: %s</string>
+    <string name="result_pass_text">PASS</string>
+    <string name="result_fail_text">FAIL</string>
+    <string name="rank_first_class_distinction_text">WOAH, FIRST CLASS WITH DISTINCTION</string>
+    <string name="rank_first_class_text">YAYY, FIRST CLASS</string>
+    <string name="rank_second_class_text">NVM, SECOND CLASS</string>
+    <string name="rank_fail_text">OOPS, FAIL</string>
+    <string name="result_pass_character">P</string>
+    <string name="result_fail_character">F</string>
 
 </resources>
