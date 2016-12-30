@@ -29,8 +29,8 @@
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
                 android:textStyle="bold"
-                android:textSize="30sp"
-                android:background="#FFFFCC" />
+                android:textSize="@dimen/big_text_size"
+                android:background="@color/light_yellow" />
         </RelativeLayout>
 
     </HorizontalScrollView>

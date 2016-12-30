@@ -13,10 +13,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/dpHeading"
-        android:layout_marginTop="40dp"
-        android:src="@drawable/reportcard"
+        android:layout_marginTop="@dimen/main_activity_widget_margin_top"
+        android:src="@drawable/report_card"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:contentDescription="@string/report_card_image_content_desc"/>
 
     <ListView
         android:layout_width="match_parent"
@@ -24,9 +25,9 @@
         android:layout_below="@+id/dpHeading"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="40dp"
-        android:divider="#000000"
-        android:dividerHeight="2dip"
+        android:layout_marginTop="@dimen/main_activity_widget_margin_top"
+        android:divider="@android:color/black"
+        android:dividerHeight="@dimen/divider_height"
         android:background="@drawable/border"
         android:id="@+id/dpMainListView">
     </ListView>

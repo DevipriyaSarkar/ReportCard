@@ -28,21 +28,21 @@ import java.util.ArrayList;
 
 public class InputMarksFragment extends Fragment {
 
-    TextView dpMaxMarksText;
-    TextView dpTap;
-    ListView dpInputMarksListView;
-    ArrayList<MarksRow> dpItems;
-    CustomMarksRowAdapter dpItemsListViewAdapter;
-    MarksRow sample;
-    MarksRow item;
-    SharedPreferences spSubject;
-    SharedPreferences spTest;
-    SharedPreferences spMarks;
-    int testPos;
-    int max;
-    int flag;
-    Bundle bundle;
-    View view;
+    private TextView dpMaxMarksText;
+    private TextView dpTap;
+    private ListView dpInputMarksListView;
+    private ArrayList<MarksRow> dpItems;
+    private CustomMarksRowAdapter dpItemsListViewAdapter;
+    private MarksRow sample;
+    private MarksRow item;
+    private SharedPreferences spSubject;
+    private SharedPreferences spTest;
+    private SharedPreferences spMarks;
+    private int testPos;
+    private int max;
+    private int flag;
+    private Bundle bundle;
+    private View view;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

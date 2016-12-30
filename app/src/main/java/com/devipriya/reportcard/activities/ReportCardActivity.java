@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.ContextThemeWrapper;
 import android.view.Gravity;
@@ -21,31 +22,43 @@ import java.util.Arrays;
 
 public class ReportCardActivity extends AppCompatActivity {
 
-    int settingsDec, settingsPass;
-    String dpResult, dpRank;
-    SharedPreferences spSettings;
-    SharedPreferences spSubject;
-    SharedPreferences spTest;
-    SharedPreferences spMarks;
-    TextView dpTitleText;
-    RelativeLayout dpRelativeLayout;
-    int subSize, testSize;
-    int checkShowGrade;
-    boolean checkShowRank;
-    RelativeLayout.LayoutParams params;
-    RelativeLayout.LayoutParams nParams;
-    TextView cell, cell1, cell2;
+    private int settingsDec;
+    private int settingsPass;
+    private String dpResult;
+    private String dpRank;
+    private SharedPreferences spSettings;
+    private SharedPreferences spSubject;
+    private SharedPreferences spTest;
+    private SharedPreferences spMarks;
+    private TextView dpTitleText;
+    private RelativeLayout dpRelativeLayout;
+    private int subSize;
+    private int testSize;
+    private int checkShowGrade;
+    private boolean checkShowRank;
+    private RelativeLayout.LayoutParams params;
+    private RelativeLayout.LayoutParams nParams;
+    private TextView cell;
+    private TextView cell1;
+    private TextView cell2;
 
-    int maxSub, overallTotalObt, overallMaxMarks;
-    int[] totTest, maxTest, totSub;
-    float tempOverallPercent;
-    float[] tempPercentTest, tempPercentSub;
-    BigDecimal percentTest[], percentSub[];
-    BigDecimal overallPercent, dpPass;
+    private int maxSub;
+    private int overallTotalObt;
+    private int overallMaxMarks;
+    private int[] totTest;
+    private int[] maxTest;
+    private int[] totSub;
+    private float tempOverallPercent;
+    private float[] tempPercentTest;
+    private float[] tempPercentSub;
+    private BigDecimal[] percentTest;
+    private BigDecimal[] percentSub;
+    private BigDecimal overallPercent;
+    private BigDecimal dpPass;
 
-    final int DEFAULT_DECIMAL_PLACES = 2;
-    final int DEFAULT_PASS_PERCENTAGE = 30;
-    final int DEFAULT_SHOW_RANK_CHOICE = 1; // do not show grades
+    private final int DEFAULT_DECIMAL_PLACES = 2;
+    private final int DEFAULT_PASS_PERCENTAGE = 30;
+    private final int DEFAULT_SHOW_RANK_CHOICE = 1; // do not show grades
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -422,7 +435,7 @@ public class ReportCardActivity extends AppCompatActivity {
     }
 
     //calculate result
-    void calculateResult(){
+    private void calculateResult(){
         //Result: pass or fail
         if(overallPercent.compareTo(dpPass) >= 0){
             dpResult = getString(R.string.result_pass_text);
@@ -432,7 +445,7 @@ public class ReportCardActivity extends AppCompatActivity {
     }
 
     //calculate rank
-    void calculateRank(){
+    private void calculateRank(){
         //Rank: FCD / FC / SC/ FAIL
         if(overallPercent.compareTo(BigDecimal.valueOf(70)) >= 0)
             dpRank = getString(R.string.rank_first_class_distinction_text);
@@ -445,7 +458,7 @@ public class ReportCardActivity extends AppCompatActivity {
     }
 
     //calculate grade
-    String calculateGrade(int marks, int total, int option){
+    private String calculateGrade(int marks, int total, int option){
 
         String resChar = "";
         BigDecimal inputPercent;
@@ -503,14 +516,14 @@ public class ReportCardActivity extends AppCompatActivity {
         return resChar;
     }
 
-    void changeCellColor(int check, TextView textView){
+    private void changeCellColor(int check, TextView textView){
         if(check == 1){
             textView.setBackgroundResource(R.drawable.last_note_pass);
-            textView.setTextColor(getResources().getColor(R.color.green));
+            textView.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.green));
         }
         else {
             textView.setBackgroundResource(R.drawable.last_note_fail);
-            textView.setTextColor(getResources().getColor(R.color.red));
+            textView.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.red));
         }
     }
 

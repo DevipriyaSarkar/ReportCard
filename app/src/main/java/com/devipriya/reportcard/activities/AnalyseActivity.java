@@ -18,12 +18,13 @@ import java.util.ArrayList;
 
 public class AnalyseActivity extends AppCompatActivity {
 
-    ArrayList<String> dpOptions;
-    ArrayAdapter dpAnalysisAdapter;
-    ListView dpAnalysisListView;
-    SharedPreferences spSubject;
-    SharedPreferences spTest;
-    int subSize, testSize;
+    private ArrayList<String> dpOptions;
+    private ArrayAdapter dpAnalysisAdapter;
+    private ListView dpAnalysisListView;
+    private SharedPreferences spSubject;
+    private SharedPreferences spTest;
+    private int subSize;
+    private int testSize;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

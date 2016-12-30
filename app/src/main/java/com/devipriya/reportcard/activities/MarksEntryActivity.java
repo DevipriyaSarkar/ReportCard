@@ -19,13 +19,13 @@ import java.util.ArrayList;
 
 public class MarksEntryActivity extends AppCompatActivity {
 
-    ArrayList<String> dpTests;
-    ArrayAdapter<String> dpSpinnerAdapter;
-    Spinner spinner;
-    SharedPreferences sharedPrefTests;
-    SharedPreferences sharedPrefSubjects;
-    int subSize;
-    int testSize;
+    private ArrayList<String> dpTests;
+    private ArrayAdapter<String> dpSpinnerAdapter;
+    private Spinner spinner;
+    private SharedPreferences sharedPrefTests;
+    private SharedPreferences sharedPrefSubjects;
+    private int subSize;
+    private int testSize;
 
 
     @Override

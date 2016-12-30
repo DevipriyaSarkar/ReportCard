@@ -24,20 +24,20 @@ import java.util.ArrayList;
 
 public class TestsEntryActivity extends AppCompatActivity {
 
-    int settingMaxMarks;
-    EditText dpTestNameInput;
-    EditText dpMaxMarksInput;
-    Button dpSaveButton;
-    ListView dpDynamicListView;
-    ArrayList<TestRow> dpItems;
-    CustomTestRowAdapter dpDynamicListViewAdapter;
-    TestRow itemName;
-    TestRow sample;
-    SharedPreferences spSubject;
-    SharedPreferences spTest;
-    SharedPreferences spMarks;
-    SharedPreferences spSettings;
-    final int DEFAULT_MAX_MARKS = 100;
+    private int settingMaxMarks;
+    private EditText dpTestNameInput;
+    private EditText dpMaxMarksInput;
+    private Button dpSaveButton;
+    private ListView dpDynamicListView;
+    private ArrayList<TestRow> dpItems;
+    private CustomTestRowAdapter dpDynamicListViewAdapter;
+    private TestRow itemName;
+    private TestRow sample;
+    private SharedPreferences spSubject;
+    private SharedPreferences spTest;
+    private SharedPreferences spMarks;
+    private SharedPreferences spSettings;
+    private final int DEFAULT_MAX_MARKS = 100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -231,7 +231,7 @@ public class TestsEntryActivity extends AppCompatActivity {
 
     }
 
-    boolean hasAlphaNum(String s){
+    private boolean hasAlphaNum(String s){
         for (int i=0; i < s.length(); i++){
             if((s.charAt(i)>='A' && s.charAt(i)<='Z') || (s.charAt(i)>='a' && s.charAt(i)<='z') ||
                     (s.charAt(i)>='0' && s.charAt(i)<='9'))

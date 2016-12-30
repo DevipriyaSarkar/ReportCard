@@ -12,20 +12,20 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/dpTAnalysisLinearLayout">
+        android:id="@+id/dpSAnalysisLinearLayout">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/ask_to_choose_test"
+            android:text="@string/ask_to_choose_subject"
             android:textIsSelectable="false"
-            android:textColor="#ff000000" />
+            android:textColor="@android:color/black" />
 
         <Spinner
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/testSpinner"
+            android:id="@+id/subSpinner"
             android:spinnerMode="dialog"
             android:longClickable="false" />
 
@@ -33,9 +33,9 @@
 
     <com.jjoe64.graphview.GraphView
         android:layout_width="match_parent"
-        android:layout_height="200dip"
-        android:id="@+id/testGraph"
-        android:layout_below="@+id/dpTAnalysisLinearLayout"
-        android:layout_marginTop="30dp" />
+        android:layout_height="@dimen/graph_height"
+        android:id="@+id/subGraph"
+        android:layout_below="@+id/dpSAnalysisLinearLayout"
+        android:layout_marginTop="@dimen/graph_margin_top" />
 
 </RelativeLayout>

@@ -15,7 +15,7 @@
         <Button
             android:id="@+id/button"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
+            android:layout_height="@dimen/big_button_height"
             android:text="@string/addGradeRange"/>
 
     </LinearLayout>
@@ -33,8 +33,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/gradeList"
-            android:divider="#000000"
-            android:dividerHeight="2dip"
+            android:divider="@android:color/black"
+            android:dividerHeight="@dimen/divider_height"
             android:background="@drawable/border" >
         </ListView>
 

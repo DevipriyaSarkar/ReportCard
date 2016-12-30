@@ -22,28 +22,28 @@ import java.util.ArrayList;
 
 public class AnalysisSubjectActivity extends AppCompatActivity {
 
-    ArrayList<String> dpSubjects;
-    ArrayAdapter<String> dpSubSpinnerAdapter;
-    Spinner subSpinner;
-    SharedPreferences sharedPrefTests;
-    SharedPreferences sharedPrefSubjects;
-    SharedPreferences sharedPrefMarks;
-    SharedPreferences sharedPrefSettings;
-    boolean userValOnTop;
-    GraphView subGraph;
-    DataPoint[] bars;
-    ArrayList<Double> dpMarks;
-    ArrayList<String> dpTestName;
-    BarGraphSeries<DataPoint> series;
-    String[] dpTestArray;
-    int subSize;
-    int testSize;
-    int pos = 0;
+    private ArrayList<String> dpSubjects;
+    private ArrayAdapter<String> dpSubSpinnerAdapter;
+    private Spinner subSpinner;
+    private SharedPreferences sharedPrefTests;
+    private SharedPreferences sharedPrefSubjects;
+    private SharedPreferences sharedPrefMarks;
+    private SharedPreferences sharedPrefSettings;
+    private boolean userValOnTop;
+    private GraphView subGraph;
+    private DataPoint[] bars;
+    private ArrayList<Double> dpMarks;
+    private ArrayList<String> dpTestName;
+    private BarGraphSeries<DataPoint> series;
+    private String[] dpTestArray;
+    private int subSize;
+    private int testSize;
+    private int pos = 0;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_analysis__subject);
+        setContentView(R.layout.activity_analysis_subject);
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         sharedPrefSettings = PreferenceManager.getDefaultSharedPreferences(getBaseContext());

@@ -21,12 +21,13 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    SharedPreferences spSubject;
-    SharedPreferences spTest;
-    ArrayList<String> dpOptions;
-    ArrayAdapter dpMainAdapter;
-    ListView dpMainListView;
-    int subSize, testSize;
+    private SharedPreferences spSubject;
+    private SharedPreferences spTest;
+    private ArrayList<String> dpOptions;
+    private ArrayAdapter dpMainAdapter;
+    private ListView dpMainListView;
+    private int subSize;
+    private int testSize;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

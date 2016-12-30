@@ -10,8 +10,8 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/text_subject"
         android:id="@+id/dpSubjectText"
-        android:layout_margin="10dp"
-        android:width="180dp" />
+        android:layout_margin="@dimen/linear_layout_padding"
+        android:width="@dimen/row_title_text_width_small" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -19,8 +19,9 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/text_marks"
         android:id="@+id/dpSubjectMarksText"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginBottom="10dp" />
+        android:layout_marginTop="@dimen/linear_layout_padding"
+        android:layout_marginRight="@dimen/linear_layout_padding"
+        android:layout_marginEnd="@dimen/linear_layout_padding"
+        android:layout_marginBottom="@dimen/linear_layout_padding" />
 
 </LinearLayout>

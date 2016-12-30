@@ -22,15 +22,15 @@ import java.util.ArrayList;
 
 public class SubjectsEntryActivity extends AppCompatActivity {
 
-    EditText dpInputEditText;
-    Button dpSaveButton;
-    ListView dpDynamicListView;
-    ArrayList<String> dpItems;
-    CustomSubjectRowAdapter dpDynamicListViewAdapter;
-    String itemName= "";
-    SharedPreferences spSubject;
-    SharedPreferences spTest;
-    SharedPreferences spMarks;
+    private EditText dpInputEditText;
+    private Button dpSaveButton;
+    private ListView dpDynamicListView;
+    private ArrayList<String> dpItems;
+    private CustomSubjectRowAdapter dpDynamicListViewAdapter;
+    private String itemName= "";
+    private SharedPreferences spSubject;
+    private SharedPreferences spTest;
+    private SharedPreferences spMarks;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -191,7 +191,7 @@ public class SubjectsEntryActivity extends AppCompatActivity {
 
     }
 
-    boolean hasAlphaNum(String s){
+    private boolean hasAlphaNum(String s){
         for (int i=0; i < s.length(); i++){
             if((s.charAt(i)>='A' && s.charAt(i)<='Z') || (s.charAt(i)>='a' && s.charAt(i)<='z') ||
                     (s.charAt(i)>='0' && s.charAt(i)<='9'))

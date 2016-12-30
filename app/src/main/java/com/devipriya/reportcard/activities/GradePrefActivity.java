@@ -25,13 +25,19 @@ import java.util.ArrayList;
 
 public class GradePrefActivity extends AppCompatActivity {
 
-    Button button;
-    ListView gradeList;
-    ArrayList<GradeRangeRow> dpItems;
-    GradeRangeRow sample, last, first, shift;
-    CustomGradeRangeRowAdapter gradeListAdapter;
-    SharedPreferences spSettings, spGradePref;
-    int dpPass, rangeSize, pos;
+    private Button button;
+    private ListView gradeList;
+    private ArrayList<GradeRangeRow> dpItems;
+    private GradeRangeRow sample;
+    private GradeRangeRow last;
+    private GradeRangeRow first;
+    private GradeRangeRow shift;
+    private CustomGradeRangeRowAdapter gradeListAdapter;
+    private SharedPreferences spSettings;
+    private SharedPreferences spGradePref;
+    private int dpPass;
+    private int rangeSize;
+    private int pos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -277,7 +283,7 @@ public class GradePrefActivity extends AppCompatActivity {
 
     }
 
-    boolean hasAlphaNum(String s){
+    private boolean hasAlphaNum(String s){
         for (int i=0; i < s.length(); i++){
             if((s.charAt(i)>='A' && s.charAt(i)<='Z') || (s.charAt(i)>='a' && s.charAt(i)<='z') || (s.charAt(i)>='0' && s.charAt(i)<='9'))
                 return true;

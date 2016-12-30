@@ -21,20 +21,20 @@ import com.devipriya.reportcard.R;
 
 public class UserSettingsActivity extends PreferenceActivity {
 
-    static SharedPreferences spSettings;
-    static SharedPreferences spGradePref;
-    static SharedPreferences spSubject;
-    static SharedPreferences spTest;
-    static SharedPreferences spMarks;
+    private static SharedPreferences spSettings;
+    private static SharedPreferences spGradePref;
+    private static SharedPreferences spSubject;
+    private static SharedPreferences spTest;
+    private static SharedPreferences spMarks;
 
-    static SharedPreferences.Editor editSettings;
-    static SharedPreferences.Editor editGradePref;
-    static SharedPreferences.Editor editSubject;
-    static SharedPreferences.Editor editTest;
-    static SharedPreferences.Editor editMarks;
+    private static SharedPreferences.Editor editSettings;
+    private static SharedPreferences.Editor editGradePref;
+    private static SharedPreferences.Editor editSubject;
+    private static SharedPreferences.Editor editTest;
+    private static SharedPreferences.Editor editMarks;
 
-    static int checkShowGrade;
-    static final int DEFAULT_PASS_PERCENTAGE = 30;
+    private static int checkShowGrade;
+    private static final int DEFAULT_PASS_PERCENTAGE = 30;
 
 
     @Override

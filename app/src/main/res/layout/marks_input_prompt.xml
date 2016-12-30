@@ -3,14 +3,13 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="10dp" >
+    android:padding="@dimen/linear_layout_padding" >
 
     <EditText
         android:id="@+id/editTextDialogUserInput"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:inputType="number"
-        android:singleLine="true"
         android:maxLines="1"
         android:maxLength="4">
 

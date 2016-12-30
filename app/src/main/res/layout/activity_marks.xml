@@ -18,7 +18,7 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/ask_to_choose"
             android:textIsSelectable="false"
-            android:textColor="#ff000000" />
+            android:textColor="@android:color/black" />
 
         <Spinner
             android:layout_width="match_parent"
@@ -36,6 +36,6 @@
         tools:layout="@layout/input_marks_fragment"
         android:layout_below="@+id/dpLinearLayout"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp" />
+        android:layout_marginTop="@dimen/list_top_margin" />
 
 </RelativeLayout>

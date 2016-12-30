@@ -23,7 +23,6 @@
             android:layout_height="wrap_content"
             android:hint="@string/enter_subject"
             android:inputType="textCapWords"
-            android:singleLine="true"
             android:maxLines="1"
             android:maxLength="20"
             android:digits="@string/limit_edit_text"/>
@@ -38,11 +37,11 @@
     <ListView
         android:id="@+id/dpDynamicListView"
         android:layout_below="@+id/dpSubjectSave"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/list_top_margin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:divider="#000000"
-        android:dividerHeight="2dip"
+        android:divider="@android:color/black"
+        android:dividerHeight="@dimen/divider_height"
         android:background="@drawable/border"/>
 
 </RelativeLayout>

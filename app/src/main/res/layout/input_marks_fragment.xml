@@ -8,9 +8,10 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:id="@+id/dpMaxMarksText"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="@dimen/small_top_margin"
         android:gravity="center_horizontal"
-        android:layout_marginLeft="10dp" />
+        android:layout_marginLeft="@dimen/linear_layout_padding"
+        android:layout_marginStart="@dimen/linear_layout_padding"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -18,8 +19,9 @@
         android:layout_below="@+id/dpMaxMarksText"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:id="@+id/dpTap"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp" />
+        android:layout_marginLeft="@dimen/linear_layout_padding"
+        android:layout_marginStart="@dimen/linear_layout_padding"
+        android:layout_marginTop="@dimen/linear_layout_padding" />
 
     <ListView
         android:layout_width="match_parent"
@@ -27,12 +29,12 @@
         android:id="@+id/dpInputMarksListView"
         android:layout_below="@+id/dpTap"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginBottom="5dp"
-        android:divider="#000000"
-        android:dividerHeight="2dip"
+        android:layout_marginTop="@dimen/list_top_margin"
+        android:layout_marginLeft="@dimen/linear_layout_padding"
+        android:layout_marginRight="@dimen/linear_layout_padding"
+        android:layout_marginBottom="@dimen/list_bottom_margin"
+        android:divider="@android:color/black"
+        android:dividerHeight="@dimen/divider_height"
         android:background="@drawable/border"/>
 
 </RelativeLayout>

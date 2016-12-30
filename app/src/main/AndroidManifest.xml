@@ -42,11 +42,11 @@
         </activity>
         <activity
             android:name=".activities.AnalysisTestActivity"
-            android:label="@string/title_activity_analysis__test" >
+            android:label="@string/title_activity_analysis_test" >
         </activity>
         <activity
             android:name=".activities.AnalysisSubjectActivity"
-            android:label="@string/title_activity_analysis__subject" >
+            android:label="@string/title_activity_analysis_subject" >
         </activity>
         <activity
             android:name=".activities.GradePrefActivity"

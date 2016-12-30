@@ -8,8 +8,8 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:id="@+id/dpSubject"
-        android:layout_margin="15dp"
-        android:width="200dp"
-        android:textSize="20sp" />
+        android:layout_margin="@dimen/row_layout_margin"
+        android:width="@dimen/row_title_text_width"
+        android:textSize="@dimen/normal_text_size" />
 
 </LinearLayout>
